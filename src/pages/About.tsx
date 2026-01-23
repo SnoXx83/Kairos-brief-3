@@ -1,3 +1,4 @@
+import DetailDailyCard from '../components/DetailDailyCard'
 import Nav from '../components/Nav'
 
 export default function About() {
@@ -5,6 +6,7 @@ export default function About() {
     <div>
       <h1 className="text-5xl font-extrabold tracking-tight text-slate-900"> A Propos </h1>
       <Nav />
+      <DetailDailyCard />
     </div>
   )
 }
