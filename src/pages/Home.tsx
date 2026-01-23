@@ -1,6 +1,7 @@
 import React from 'react'
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
+import DailyCard from '../components/DailyCard'
 
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
     <div>
       <Nav />
       <Hero/>
+      <DailyCard />
     </div>
   )
 }
