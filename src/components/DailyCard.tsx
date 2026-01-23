@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API_KEY = "3330ee5459ce772712bec299bd93223e";
+export const API_KEY = "3330ee5459ce772712bec299bd93223e";
 
 interface dailyCard {
   dt_txt: string;

@@ -1,5 +1,6 @@
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { API_KEY } from "./DailyCard";
 
 interface Hour {
   dt: number;
@@ -17,11 +18,10 @@ interface HourCardProps {
   city: string; 
 }
 
-export default function HourCard({ city = "Paris" }: HourCardProps) {
+export default function HourCard({city}: HourCardProps) {
   const [hours, setHours] = useState<Hour[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -77,7 +77,7 @@ export default function HourCard({ city = "Paris" }: HourCardProps) {
             </p>
 
             <p className="text-lg font-bold mt-1">
-                // Arrondi à l'entier le plus proche
+                {/* Arrondi à l'entier le plus proche */}
               {Math.round(hour.main.temp)}°C
             </p>
 
