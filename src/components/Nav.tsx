@@ -2,7 +2,7 @@ import logo from "../assets/Kairos.png"
 
 export default function Nav() {
   return (
-    <div className="navbar px-10 flex justify-around items-center bg-base-100  max-sm:flex-col">
+    <div className="navbar px-10 flex justify-between items-center bg-base-100  max-sm:flex-col">
       <div className="flex items-center py-4">
         <a className="btn h-25  btn-ghost text-xl">
           <img className="h-25 w-auto object-contain" src={logo} alt="logo de Kairos" />
