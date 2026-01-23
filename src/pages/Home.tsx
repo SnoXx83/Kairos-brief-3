@@ -1,4 +1,3 @@
-import React from 'react'
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import DailyCard from '../components/DailyCard'

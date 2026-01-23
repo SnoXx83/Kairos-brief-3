@@ -10,7 +10,7 @@ export default function Hero() {
             try {
                 const response = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=3330ee5459ce772712bec299bd93223e")
                 const weatherData= await response.json();
-                console.log(weatherData)
+                // console.log(weatherData)
                 setData(weatherData);
                 // console.log(data);
             } catch (error) {
