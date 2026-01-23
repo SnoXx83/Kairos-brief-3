@@ -1,6 +1,7 @@
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import DailyCard from '../components/DailyCard'
+import HourCard from '../components/HourCard'
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Nav />
       <Hero/>
       <DailyCard />
+      <HourCard city='Paris' />
     </div>
   )
 }
