@@ -1,12 +1,18 @@
-export type Hero = {
-    name: string;
-    wind: {
-        deg: string;
-    }
-    main: {
-        humidity: string;
-    }
-    sys: {
-        country: string;
-    }
+export default interface WeatherData {
+  name: string;
+  main: {
+    temp: number;
+    humidity: number;
+  };
+  sys: {
+    country: string;
+  };
+  weather: {
+    description: string;
+    icon: string;
+  }[];
+  wind: {
+    deg: number;
+    speed: number;
+  };
 }

@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import DailyCard from '../components/DailyCard'
 import HourCard from '../components/HourCard'
 import { useState } from "react"
+import Footer from '../components/Footer'
 
 
 
@@ -10,29 +11,29 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'daily' | 'hourly'>('daily');
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen all ">
       <Nav />
       <Hero />
 
-      <main className="max-w-7xl mx-auto py-10 px-6">
+      <main className="max-w-7xl mx-auto py-8">
         <div className="flex justify-start mb-10">
           <div className="flex bg-sky-100/50 p-1.5 rounded-full shadow-inner border border-sky-200">
             <button
               onClick={() => setActiveTab('daily')}
-              className={`px-8 py-3 font-black transition-all duration-500 rounded-full text-sm uppercase tracking-widest ${
+              className={`px-8 py-3 font-black transition-all duration-500 rounded-full text-sm uppercase tracking-widest cursor-pointer ${
                 activeTab === 'daily' 
-                ? 'bg-sky-500 text-white shadow-lg shadow-sky-200 scale-105' 
-                : 'text-sky-400 hover:text-sky-600'
+                ? 'bg-sky-900 text-white shadow-lg shadow-sky-900 scale-105' 
+                : 'text-sky-800 hover:text-sky-900'
               }`}
             >
               Par Jour
             </button>
             <button
               onClick={() => setActiveTab('hourly')}
-              className={`px-8 py-3 font-black transition-all duration-500 rounded-full text-sm uppercase tracking-widest ${
+              className={`px-8 py-3 font-black transition-all duration-500 rounded-full text-sm uppercase tracking-widest cursor-pointer ${
                 activeTab === 'hourly' 
-                ? 'bg-sky-500 text-white shadow-lg shadow-sky-200 scale-105' 
-                : 'text-sky-400 hover:text-sky-600'
+                ? 'bg-sky-900 text-white shadow-lg shadow-sky-900 scale-105' 
+                : 'text-sky-800 hover:text-sky-900'
               }`}
             >
               Toutes les 3 heures
@@ -62,6 +63,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer/>
     </div>
   );
 }

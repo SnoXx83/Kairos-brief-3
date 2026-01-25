@@ -5,7 +5,7 @@ export default function
 () {
   return (
     <div>
-        <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content items-center p-4">
+        <footer className="footer sm:footer-horizontal bg-sky-950 text-neutral-content items-center p-4 rounded-t-2xl">
         <aside className="grid-flow-col items-center">
             <svg
             width="36"

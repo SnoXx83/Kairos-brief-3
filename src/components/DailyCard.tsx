@@ -62,20 +62,20 @@ function Weather() {
   };
 
   return (
-    <div className="p-4 w-full">
-      <h1 className="text-3xl font-black mb-10 text-center text-gray-800 tracking-tight">
-        Prévisions <span className="text-sky-500">5 Jours</span>
+    <div className=" w-full">
+      <h1 className="text-3xl font-black mb-10 text-center text-gray-900 tracking-tight">
+        Prévisions <span className="text-sky-700">5 Jours</span>
       </h1>
 
-      <div className="carousel carousel-center w-full p-8 space-x-8 bg-sky-50/50 rounded-[3rem] overflow-x-auto shadow-inner">
+      <div className="carousel carousel-center w-full p-8 space-x-8 bg-sky-200/50 rounded-[3rem] overflow-x-auto shadow-inner">
         {dailyWeather
           .filter((_: any, index: number) => index % 8 === 0)
           .map((item: dailyCard, index) => (
             <div key={index} className="carousel-item">
               
-              <div className="w-72 bg-sky-300 rounded-[2.5rem] shadow-2xl shadow-sky-200/50 overflow-hidden flex flex-col border-4 border-white/40 transform transition-all hover:scale-[1.02]">
+              <div className="w-72 bg-sky-700/50 rounded-[2.5rem] shadow-2xl shadow-sky-200/50 overflow-hidden flex flex-col border-4 border-white/40 transform transition-all hover:scale-[1.02]">
                 
-                <div className="bg-sky-400 py-4 shadow-md">
+                <div className="bg-sky-900 py-4 shadow-md">
                   <h2 className="text-xl font-black text-white text-center capitalize tracking-wide">
                     {formatDate(item.dt_txt)}
                   </h2>

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 
 interface Hour {
   dt: number;
@@ -19,40 +20,28 @@ interface Hour {
     description: string;
     icon: string;
   }[];
-  clouds: {
-    all: number; // % de nuages
-  };
-  wind: {
-    speed: number;
-    deg: number;
-    gust?: number;
-  };
-  visibility?: number; // en mètres
-  pop?: number; // probabilité de pluie
-  rain?: {
-    "3h"?: number;
-  };
-  snow?: {
-    "3h"?: number;
-  };
-  sys: {
-    pod: string;
-  };
+  clouds: { all: number };
+  wind: { speed: number; deg: number; gust?: number };
+  visibility?: number;
+  pop?: number;
+  rain?: { "3h"?: number };
+  snow?: { "3h"?: number };
+  sys: { pod: string };
 }
 
 interface DetailsHourProps {
   city: string;
-  hourIndex?: number; // quelle tranche de 3h afficher
 }
 
-export default function DetailsHour({ city, hourIndex = 0 }: DetailsHourProps) {
-  const [hour, setHour] = useState<Hour | null>(null);
+export default function DetailsHour({ city }: DetailsHourProps) {
+  const [forecastList, setForecastList] = useState<Hour[]>([]);
   const [loading, setLoading] = useState(true);
-  const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+  const API_KEY = "3330ee5459ce772712bec299bd93223e";
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
+        setLoading(true);
         const geoRes = await fetch(
           `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
         );
@@ -60,14 +49,11 @@ export default function DetailsHour({ city, hourIndex = 0 }: DetailsHourProps) {
         if (!geoData.length) throw new Error("Ville introuvable");
 
         const { lat, lon } = geoData[0];
-
         const weatherRes = await fetch(
           `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=fr&appid=${API_KEY}`
         );
         const weatherData = await weatherRes.json();
-        console.log(weatherData); // pour voir toutes les données
-
-        setHour(weatherData.list[hourIndex]);
+        setForecastList(weatherData.list);
       } catch (error) {
         console.error("Erreur météo :", error);
       } finally {
@@ -75,46 +61,72 @@ export default function DetailsHour({ city, hourIndex = 0 }: DetailsHourProps) {
       }
     };
     fetchWeather();
-  }, [city, hourIndex]);
+  }, [city]);
 
-  if (loading) return <p>Chargement météo…</p>;
-  if (!hour) return <p>Aucune donnée disponible</p>;
+  if (loading) return <div className="flex justify-center p-10"><span className="loading loading-spinner loading-lg text-primary"></span></div>;
+  if (!forecastList.length) return <p className="text-center p-10">Aucune donnée disponible</p>;
 
   return (
-    <div className="p-4 max-w-md mx-auto bg-base-200 rounded shadow-md text-center">
-      <h2 className="text-xl font-bold mb-2">
-        Détails météo – <span className="text-blue-500">{city}</span>
+    <div className="w-full max-w-6xl mx-auto p-4">
+      <h2 className="text-xl font-bold mb-6 text-center capitalize text-sky-900">
+        Prévisions 24h : <span className="text-sky-500">{city}</span>
       </h2>
 
-      <p className="text-sm text-gray-500 mb-4">
-        {new Date(hour.dt * 1000).toLocaleString("fr-FR")}
-      </p>
+      <div className="overflow-x-auto bg-base-100 rounded-2xl shadow-xl">
+        <table className="table w-full text-center">
 
-      <img
-        src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
-        alt={hour.weather[0].description}
-        className="w-16 h-16 mx-auto"
-      />
+          <thead className="bg-sky-900  text-white">
+            <tr>
+              <th>Heure</th>
+              <th>Météo</th>
+              <th>Temp.</th>
+              <th>Ressenti</th>
+              <th>Pluie (%)</th>
+              <th>Vent</th>
+              <th>Humidité</th>
+            </tr>
+          </thead>
 
-      <p className="text-lg font-bold mt-2">{Math.round(hour.main.temp)}°C</p>
-      <p className="text-sm text-gray-600 capitalize">{hour.weather[0].description}</p>
-
-      <div className="mt-4 text-sm text-left space-y-1">
-        <p>Température ressentie : {Math.round(hour.main.feels_like)}°C</p>
-        <p>Température max : {Math.round(hour.main.temp_max)}°C</p>
-        <p>Température min : {Math.round(hour.main.temp_min)}°C</p>
-        <p>Humidité : {hour.main.humidity}%</p>
-        <p>Pression : {hour.main.pressure} hPa</p>
-        {hour.main.sea_level && <p>Niveau de la mer : {hour.main.sea_level} hPa</p>}
-        {hour.main.grnd_level && <p>Niveau du sol : {hour.main.grnd_level} hPa</p>}
-        <p>Nuages : {hour.clouds.all}%</p>
-        <p>Vent : {Math.round(hour.wind.speed * 3.6)} km/h, direction {hour.wind.deg}°</p>
-        {hour.wind.gust && <p>Rafales : {Math.round(hour.wind.gust * 3.6)} km/h</p>}
-        {hour.visibility && <p>Visibilité : {hour.visibility} m</p>}
-        {hour.pop && <p>Probabilité de pluie : {hour.pop * 100}%</p>}
-        {hour.rain && hour.rain["3h"] && <p>Pluie (3h) : {hour.rain["3h"]} mm</p>}
-        {hour.snow && hour.snow["3h"] && <p>Neige (3h) : {hour.snow["3h"]} mm</p>}
-        <p>Jour/Nuit : {hour.sys.pod === "d" ? "Jour" : "Nuit"}</p>
+          <tbody>
+            {forecastList.slice(0, 8).map((hour) => (
+              <tr key={hour.dt} className="hover:bg-sky-200 transition-colors">
+                <td className="font-bold">
+                  {new Date(hour.dt * 1000).toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' })}
+                </td>
+                <td>
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
+                      alt={hour.weather[0].description}
+                      className="w-10 h-10"
+                    />
+                    <span className="text-[10px] uppercase opacity-60 font-medium">
+                      {hour.weather[0].description}
+                    </span>
+                  </div>
+                </td>
+                <td className="text-lg font-bold">
+                  {Math.round(hour.main.temp)}°C
+                </td>
+                <td className="opacity-70">
+                  {Math.round(hour.main.feels_like)}°C
+                </td>
+                <td>
+                  <span className={`font-medium ${hour.pop && hour.pop > 0.3 ? 'text-blue-500' : ''}`}>
+                    {Math.round((hour.pop || 0) * 100)}%
+                  </span>
+                </td>
+                <td>
+                  <div className="flex flex-col text-xs">
+                    <span className="font-bold">{Math.round(hour.wind.speed * 3.6)} km/h</span>
+                    <span className="opacity-50 text-[9px]">Dir: {hour.wind.deg}°</span>
+                  </div>
+                </td>
+                <td>{hour.main.humidity}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

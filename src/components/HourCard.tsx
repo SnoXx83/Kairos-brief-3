@@ -42,18 +42,18 @@ export default function HourCard({ city }: HourCardProps) {
   if (loading) return <p className="text-center p-10 text-gray-500 font-bold tracking-widest">Analyse du ciel...</p>;
 
   return (
-    <div className="p-4 w-full">
+    <div className=" w-full">
       <h1 className="text-3xl font-black mb-10 text-center text-gray-800 tracking-tight">
-        Météo <span className="text-sky-500 text-shadow-sm">Toutes les 3h</span>
+        Météo <span className="text-sky-700 text-shadow-sm">Toutes les 3h</span>
       </h1>
 
       <div className="carousel carousel-center w-full p-8 space-x-8 bg-sky-50/50 rounded-[3rem] overflow-x-auto shadow-inner">
         {hours.map((hour) => (
           <div key={hour.dt} className="carousel-item">
 
-            <div className="w-72 bg-sky-300 rounded-[2.5rem] shadow-2xl shadow-sky-200/50 overflow-hidden flex flex-col border-4 border-white/40 transform transition-all hover:scale-[1.02]">
+            <div className="w-72 bg-sky-700/50 rounded-[2.5rem] shadow-2xl shadow-sky-200/50 overflow-hidden flex flex-col border-4 border-white/40 transform transition-all hover:scale-[1.02]">
 
-              <div className="bg-sky-400 py-4 shadow-md">
+              <div className="bg-sky-900 py-4 shadow-md">
                 <h2 className="text-xl font-black text-white text-center tracking-widest">
                   {new Date(hour.dt * 1000).getHours()}h00
                 </h2>
