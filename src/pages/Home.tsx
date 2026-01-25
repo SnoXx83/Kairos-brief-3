@@ -2,7 +2,8 @@ import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import DailyCard from '../components/DailyCard'
 import HourCard from '../components/HourCard'
-import { useState } from "react";
+import { useState } from "react"
+
 
 
 export default function Home() {
