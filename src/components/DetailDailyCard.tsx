@@ -1,22 +1,8 @@
 import { useEffect, useState } from "react";
+import type DetailDailyWeather from "../types/DetailDailyCard";
+import type DetailDailyCardProps from "../types/DetailDailyCard";
 
-interface DetailDailyWeather {
-  dt: number;
-  dt_txt: string;
-  weather: { icon: string; description: string }[];
-  main: {
-    temp: number;
-    temp_min: number;
-    temp_max: number;
-    humidity: number;
-  };
-  wind: { speed: number };
-  visibility: number;
-}
 
-interface DetailDailyCardProps {
-  city: string;
-}
 
 export default function DetailDailyCard({ city }: DetailDailyCardProps) {
   const [detailDailyWeather, setDetailDailyWeather] = useState<DetailDailyWeather[]>([]);

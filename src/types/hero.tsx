@@ -16,3 +16,4 @@ export default interface WeatherData {
     speed: number;
   };
 }
+

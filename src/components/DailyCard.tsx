@@ -1,19 +1,6 @@
 import { useEffect, useState } from "react";
+import type dailyCard from "../types/Daily-Card";
 
-
-interface dailyCard {
-  dt_txt: string;
-  weather: {
-    icon: string;
-    description: string;
-  }[];
-  main: {
-    temp: number;
-    temp_min: number;
-    temp_max: number;
-    humidity: number;
-  };
-}
 
 function Weather() {
   const [dailyWeather, setDailyWeather] = useState<dailyCard[]>([]);

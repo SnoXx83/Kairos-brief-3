@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
+import type Hour from "../types/HourCard";
+import type HourCardProps from "../types/HourCard"
 
-interface Hour {
-  dt: number;
-  main: { temp: number };
-  weather: { description: string; icon: string }[];
-}
-
-interface HourCardProps {
-  city: string;
-}
 
 export default function HourCard({ city }: HourCardProps) {
   const [hours, setHours] = useState<Hour[]>([]);

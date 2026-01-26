@@ -1,37 +1,8 @@
 import { useEffect, useState } from "react";
+import type DetailsHourProps from "../types/DetailsHour";
+import type Hour from "../types/DetailsHour";
 
 
-interface Hour {
-  dt: number;
-  main: {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    humidity: number;
-    sea_level?: number;
-    grnd_level?: number;
-    temp_kf?: number;
-  };
-  weather: {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-  }[];
-  clouds: { all: number };
-  wind: { speed: number; deg: number; gust?: number };
-  visibility?: number;
-  pop?: number;
-  rain?: { "3h"?: number };
-  snow?: { "3h"?: number };
-  sys: { pod: string };
-}
-
-interface DetailsHourProps {
-  city: string;
-}
 
 export default function DetailsHour({ city }: DetailsHourProps) {
   const [forecastList, setForecastList] = useState<Hour[]>([]);
