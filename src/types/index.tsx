@@ -1,0 +1,1 @@
+import type { Hero } from "./hero";
