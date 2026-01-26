@@ -36,7 +36,8 @@ interface DetailsHourProps {
 export default function DetailsHour({ city }: DetailsHourProps) {
   const [forecastList, setForecastList] = useState<Hour[]>([]);
   const [loading, setLoading] = useState(true);
-  const API_KEY = "3330ee5459ce772712bec299bd93223e";
+  const API_KEY = import.meta.env.VITE_API_Key;
+
 
   useEffect(() => {
     const fetchWeather = async () => {

@@ -3,7 +3,8 @@ import type WeatherData from '../types/hero';
 
 export default function Hero() {
     const [data, setData] = useState<WeatherData>();
-    const API_KEY= "3330ee5459ce772712bec299bd93223e";
+    const API_KEY = import.meta.env.VITE_API_Key;
+
 
     useEffect(() => {
         const featchWeather = async () => {
@@ -26,7 +27,7 @@ export default function Hero() {
         featchWeather();
     }, []);
 
-    console.log(data);
+    // console.log(data);
 
     return (
         <div className="hero bg-sky-950/95 h- md:h-90 rounded-2xl">
@@ -39,7 +40,7 @@ export default function Hero() {
                         className="w-40 h-40"
                     />
                     <h2 className=" text-4xl font-bold">
-                        {Math.round(data?.main?.temp)}°C
+                        {data ? Math.round(data.main.temp) : "--"}°C
                     </h2>
                 </div>
                 <div>

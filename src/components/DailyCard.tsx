@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-export const API_KEY = "3330ee5459ce772712bec299bd93223e";
 
 interface dailyCard {
   dt_txt: string;
@@ -18,6 +17,8 @@ interface dailyCard {
 
 function Weather() {
   const [dailyWeather, setDailyWeather] = useState<dailyCard[]>([]);
+
+  const API_KEY = import.meta.env.VITE_API_Key;
 
   useEffect(() => {
     const getWeatherData = async () => {

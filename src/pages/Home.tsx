@@ -14,7 +14,6 @@ export default function Home() {
     <div className="min-h-screen all ">
       <Nav />
       <Hero />
-
       <main className="max-w-7xl mx-auto py-8">
         <div className="flex justify-start mb-10">
           <div className="flex bg-sky-100/50 p-1.5 rounded-full shadow-inner border border-sky-200">

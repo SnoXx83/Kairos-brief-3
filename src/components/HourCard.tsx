@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { API_KEY } from "./DailyCard";
 
 interface Hour {
   dt: number;
@@ -14,6 +13,9 @@ interface HourCardProps {
 export default function HourCard({ city }: HourCardProps) {
   const [hours, setHours] = useState<Hour[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const API_KEY = import.meta.env.VITE_API_Key;
+
 
   useEffect(() => {
     const fetchWeather = async () => {

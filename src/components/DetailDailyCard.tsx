@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-export const API_KEY = "3330ee5459ce772712bec299bd93223e";
-
 interface DetailDailyWeather {
   dt: number;
   dt_txt: string;
@@ -23,6 +21,9 @@ interface DetailDailyCardProps {
 export default function DetailDailyCard({ city }: DetailDailyCardProps) {
   const [detailDailyWeather, setDetailDailyWeather] = useState<DetailDailyWeather[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const API_KEY = import.meta.env.VITE_API_Key;
+
 
   useEffect(() => {
     const getWeatherData = async () => {

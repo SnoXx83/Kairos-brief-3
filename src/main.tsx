@@ -13,10 +13,9 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/eva" element={<About />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<Page404 />} />
         <Route path="/weather/:cityName" element={<WeatherDetails />} />
-
       </Routes>
     </BrowserRouter>
   </StrictMode>

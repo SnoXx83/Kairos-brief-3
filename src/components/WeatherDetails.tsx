@@ -9,7 +9,8 @@ import Footer from "./Footer";
 export default function WeatherDetails() {
   const { cityName } = useParams<{ cityName: string }>();
   const [data, setData] = useState<WeatherData>();
-  const API_KEY = "3330ee5459ce772712bec299bd93223e";
+  const API_KEY = import.meta.env.VITE_API_Key;
+
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -36,44 +37,44 @@ export default function WeatherDetails() {
 
   return (
     <>
-        <Nav />
-        <div className="bg-sky-900 min-h-screen rounded-3xl mt-7 p-4 md:p-10 mb-25 ">
-          <h2 className="text-3xl font-bold text-white mb-10 py-5">Météo pour {cityName}</h2>
+      <Nav />
+      <div className="bg-sky-900 min-h-screen rounded-3xl mt-7 p-4 md:p-10 mb-25 ">
+        <h2 className="text-3xl font-bold text-white mb-10 py-5">Météo pour {cityName}</h2>
 
-          <div className="hero bg-sky-700 backdrop-blur-md rounded-2xl mb-25  shadow-xl">
-            <div className="hero-content max-w-none w-full flex-col md:flex-row justify-around text-white">
-              <div className="text-center">
-                <img
-                  src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
-                  alt={data?.weather[0].description}
-                  className="w-40 h-40"
-                />
-                <h2 className="text-6xl font-bold">
-                  {data ? Math.round(data.main.temp) : "--"}°C
-                </h2>
-                <p className="capitalize text-xl my-3">{data?.weather[0].description}</p>
-              </div>
-              <div className="text-center md:text-left">
-                <h1 className="text-4xl font-bold text-center m-5">{data?.name}</h1>
-                <h3 className="text-2xl text-center">{data?.sys.country}</h3>
-                <p className="py-2 text-lg m-2 text-center">
-                  {data?.main.humidity}% d'humidité.
-                </p>
-              </div>
+        <div className="hero bg-sky-700 backdrop-blur-md rounded-2xl mb-25  shadow-xl">
+          <div className="hero-content max-w-none w-full flex-col md:flex-row justify-around text-white">
+            <div className="text-center">
+              <img
+                src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
+                alt={data?.weather[0].description}
+                className="w-40 h-40"
+              />
+              <h2 className="text-6xl font-bold">
+                {data ? Math.round(data.main.temp) : "--"}°C
+              </h2>
+              <p className="capitalize text-xl my-3">{data?.weather[0].description}</p>
             </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-8 items-start">
-            <div className="w-full lg:flex-1 bg-white/90 rounded-3xl shadow-xl overflow-hidden">
-              <DetailsHour city={cityName || ""} />
-            </div>
-
-            <div className="w-full lg:flex-1 bg-white/90 rounded-3xl shadow-xl overflow-hidden">
-              <DetailDailyCard city={cityName || ""} />
+            <div className="text-center md:text-left">
+              <h1 className="text-4xl font-bold text-center m-5">{data?.name}</h1>
+              <h3 className="text-2xl text-center">{data?.sys.country}</h3>
+              <p className="py-2 text-lg m-2 text-center">
+                {data?.main.humidity}% d'humidité.
+              </p>
             </div>
           </div>
         </div>
-        <Footer />
+
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="w-full lg:flex-1 bg-white/90 rounded-3xl shadow-xl overflow-hidden">
+            <DetailsHour city={cityName || ""} />
+          </div>
+
+          <div className="w-full lg:flex-1 bg-white/90 rounded-3xl shadow-xl overflow-hidden">
+            <DetailDailyCard city={cityName || ""} />
+          </div>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

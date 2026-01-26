@@ -1,12 +1,10 @@
-import React from 'react'
-
 export default function 
 
 () {
   return (
     <div>
         <footer className="footer sm:footer-horizontal bg-sky-950 text-neutral-content items-center p-4 rounded-t-2xl">
-        <aside className="grid-flow-col items-center">
+        <aside className="grid-flow-col items-center justify-self-center md:justify-self-start md:place-self-center">
             <svg
             width="36"
             height="36"
@@ -20,7 +18,7 @@ export default function
             </svg>
             <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         </aside>
-        <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <nav className="grid-flow-col gap-4 justify-self-center md:justify-self-end md:place-self-center ">
             <a>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
