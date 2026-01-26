@@ -17,6 +17,7 @@ interface dailyCard {
   }
 }
 
+
 function Weather() {
   const [dailyWeather, setDailyWeather] = useState<dailyCard[]>([]);
 

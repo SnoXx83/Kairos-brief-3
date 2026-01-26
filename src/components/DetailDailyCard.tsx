@@ -63,7 +63,7 @@ export default function DetailDailyCard() {
     getWeatherData();
   }, []);
 
-  if (detailDailyWeather.length === 0) {
+  if (!detailDailyWeather) {
     return <p>Chargement de la météo...</p>;
   }
 
