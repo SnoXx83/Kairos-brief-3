@@ -10,8 +10,7 @@ export default function WeatherDetails() {
   const { cityName } = useParams<{ cityName: string }>();
   const [data, setData] = useState<WeatherData>();
   const API_KEY = import.meta.env.VITE_API_Key;
-
-
+  
   useEffect(() => {
     const fetchWeather = async () => {
       try {

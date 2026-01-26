@@ -11,12 +11,14 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {/* routes du navigateur */}
     <BrowserRouter>
+    {/* Layout */}
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<Page404 />} />
         <Route path="/weather/:cityName" element={<WeatherDetails />} />
       </Routes>
+      {/* </ Layout> */}
     </BrowserRouter>
   </StrictMode>
 )
